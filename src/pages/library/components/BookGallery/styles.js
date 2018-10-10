@@ -4,16 +4,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 24px;
-  margin-top: 50px;
+  margin-top: 32px;
 `;
 
 export const BookGalleryContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-start;
 `;
 
 export const GalleryTitle = styled.h1`

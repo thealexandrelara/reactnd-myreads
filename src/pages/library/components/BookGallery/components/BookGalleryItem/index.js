@@ -1,14 +1,19 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-import { Container, Title, AuthorName, BookThumbnail } from './styles';
+import { Container, Title, AuthorName, BookThumbnail, Menu } from './styles';
 
-const BookGalleryItem = () => {
+const BookGalleryItem = ({
+  title,
+  authors,
+  imageLinks: { smallThumbnail }
+}) => {
   return (
     <Container>
-      <BookThumbnail src="http://books.google.com/books/content?id=IOejDAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-      <Title>Harry Potter: Phylosopher's Stone</Title>
-      <AuthorName>J.K. Rowling</AuthorName>
+      <BookThumbnail src={smallThumbnail} />
+      <Title>{title}</Title>
+      {authors.length && <AuthorName>{authors[0]}</AuthorName>}
+      <Menu />
     </Container>
   );
 };

@@ -4,15 +4,19 @@ import React from 'react';
 import { Container, BookGalleryContainer, GalleryTitle } from './styles';
 import BookGalleryItem from './components/BookGalleryItem';
 
-const BookGallery = () => {
+const BookGallery = ({ title, books }) => {
   return (
     <Container>
-      <GalleryTitle>Currently Reading</GalleryTitle>
+      <GalleryTitle>{title}</GalleryTitle>
       <BookGalleryContainer>
-        <BookGalleryItem />
-        <BookGalleryItem />
-        <BookGalleryItem />
-        <BookGalleryItem />
+        {books.map(book => (
+          <BookGalleryItem
+            key={book.id}
+            title={book.title}
+            authors={book.authors}
+            imageLinks={book.imageLinks}
+          />
+        ))}
       </BookGalleryContainer>
     </Container>
   );

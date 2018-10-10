@@ -6,7 +6,6 @@ import { Creators as BooksActions } from '../ducks/books';
 
 export function* getBooks() {
   try {
-    yield delay(5000);
     const response = yield call(api.get, '/books');
     console.log(response);
 

@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
+import BookGalleryMenu from '../BookGalleryMenu';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 250px;
+  min-height: 270px;
   width: 200px;
   background: #fff;
   padding: 16px 24px;
   border-radius: 4px;
-  margin: 0 auto;
-  margin-top: 80px;
+  margin-left: 24px;
+  margin-top: 40px;
 
   -webkit-box-shadow: 1px 11px 35px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 11px 35px 5px rgba(0, 0, 0, 0.1);
@@ -34,4 +36,10 @@ export const AuthorName = styled.p`
   font-size: 12px;
   text-align: center;
   color: #b9b9c0;
+`;
+
+export const Menu = styled(BookGalleryMenu)`
+  display: flex;
+  justify-self: flex-end;
+  align-self: flex-end;
 `;

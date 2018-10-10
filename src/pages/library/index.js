@@ -21,7 +21,12 @@ class Library extends Component {
   renderLibrary() {
     return (
       <Container>
-        <BookGallery />
+        <BookGallery
+          title="Currently Reading"
+          books={this.props.currentlyReadingBooks}
+        />
+        <BookGallery title="Want to Read" books={this.props.wantToReadBooks} />
+        <BookGallery title="Read" books={this.props.readBooks} />
       </Container>
     );
   }
@@ -33,7 +38,11 @@ class Library extends Component {
 }
 
 const mapStateToProps = state => ({
-  books: state.books.data,
+  readBooks: state.books.data.filter(book => book.shelf === 'read'),
+  currentlyReadingBooks: state.books.data.filter(
+    book => book.shelf === 'currentlyReading'
+  ),
+  wantToReadBooks: state.books.data.filter(book => book.shelf === 'wantToRead'),
   loading: state.books.loading
 });
 
