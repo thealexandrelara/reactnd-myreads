@@ -10,7 +10,6 @@ import BookGallery from './components/BookGallery';
 
 class Library extends Component {
   componentDidMount() {
-    console.log('didMount');
     this.loadBooks();
   }
 

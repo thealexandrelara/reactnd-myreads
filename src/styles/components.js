@@ -7,15 +7,16 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;
 
 export const Content = styled.section`
   display: flex;
   flex-direction: column;
-  position: relative;
+  justify-content: space-between;
+  height: 100%;
 `;
 
 export const HeaderBackground = styled.section`
@@ -32,19 +33,4 @@ export const HeaderBackground = styled.section`
   -webkit-transform: skew(0deg, -5deg);
   transform: skew(0deg, -5deg);
   border-bottom-left-radius: 120px;
-`;
-
-export const Footer = styled.footer`
-  display: flex;
-`;
-
-export const FooterCopyright = styled.p`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 40px;
-  color: #fff;
-  background: #3e2d93;
-  padding: 8px 0;
-  margin-top: 16px;
 `;

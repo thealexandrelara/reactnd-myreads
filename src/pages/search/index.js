@@ -6,4 +6,4 @@ class Search extends Component {
   }
 }
 
-export default Library;
+export default Search;

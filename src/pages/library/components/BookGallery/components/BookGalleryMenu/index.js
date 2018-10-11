@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as BookActions } from '../../../../../../store/ducks/books';
+
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-const options = ['Move to...', 'Currently Reading', 'Want to Read', 'Read'];
-
-const ITEM_HEIGHT = 48;
-
 class BookGalleryMenu extends Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
+    options: [
+      {
+        key: 'currentlyReading',
+        name: 'Currently Reading'
+      },
+      {
+        key: 'wantToRead',
+        name: 'Want to Read'
+      },
+      { key: 'read', name: 'Read' }
+    ]
   };
 
   handleClick = event => {
@@ -21,12 +32,17 @@ class BookGalleryMenu extends Component {
     this.setState({ anchorEl: null });
   };
 
+  handleMenuItemClick = shelf => {
+    this.props.updateBookShelfRequest(this.props.bookId, shelf);
+    this.handleClose();
+  };
+
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
-      <div>
+      <div className={this.props.className}>
         <IconButton
           aria-label="More"
           aria-owns={open ? 'long-menu' : null}
@@ -41,13 +57,13 @@ class BookGalleryMenu extends Component {
           open={open}
           onClose={this.handleClose}
         >
-          {options.map((option, index) => (
+          <MenuItem disabled>Move to...</MenuItem>
+          {this.state.options.map(option => (
             <MenuItem
-              key={option}
-              disabled={index === 0}
-              onClick={this.handleClose}
+              key={option.key}
+              onClick={() => this.handleMenuItemClick(option.key)}
             >
-              {option}
+              {option.name}
             </MenuItem>
           ))}
         </Menu>
@@ -56,4 +72,10 @@ class BookGalleryMenu extends Component {
   }
 }
 
-export default BookGalleryMenu;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(BookActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(BookGalleryMenu);

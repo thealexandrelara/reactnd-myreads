@@ -4,6 +4,7 @@ import React from 'react';
 import { Container, Title, AuthorName, BookThumbnail, Menu } from './styles';
 
 const BookGalleryItem = ({
+  id,
   title,
   authors,
   imageLinks: { smallThumbnail }
@@ -13,7 +14,7 @@ const BookGalleryItem = ({
       <BookThumbnail src={smallThumbnail} />
       <Title>{title}</Title>
       {authors.length && <AuthorName>{authors[0]}</AuthorName>}
-      <Menu />
+      <Menu bookId={id} />
     </Container>
   );
 };

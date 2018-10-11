@@ -40,6 +40,6 @@ export const AuthorName = styled.p`
 
 export const Menu = styled(BookGalleryMenu)`
   display: flex;
-  justify-self: flex-end;
-  align-self: flex-end;
+  flex: 1;
+  align-items: flex-end;
 `;

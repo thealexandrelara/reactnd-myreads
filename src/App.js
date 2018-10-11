@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import Library from './pages/library';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import store from './store';
+import Routes from './routes';
 
 import './styles/global';
 
@@ -11,27 +14,25 @@ import {
   Wrapper,
   Container,
   Content,
-  HeaderBackground,
-  Footer,
-  FooterCopyright
+  HeaderBackground
 } from './styles/components';
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Wrapper>
+        <BrowserRouter>
+          {/* <Wrapper> */}
           <Container>
             <Content>
               <HeaderBackground />
               <Header />
-              <Library />
-              <Footer>
-                <FooterCopyright>© 2018. Alexandre Lara</FooterCopyright>
-              </Footer>
+              <Routes />
+              <Footer />
             </Content>
           </Container>
-        </Wrapper>
+          {/* </Wrapper> */}
+        </BrowserRouter>
       </Provider>
     );
   }
