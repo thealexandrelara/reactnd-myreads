@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.footer`
-  display: flex;
+  /* display: flex; */
 `;
 
 export const FooterCopyright = styled.p`

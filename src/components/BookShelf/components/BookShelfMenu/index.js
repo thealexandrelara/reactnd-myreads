@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Creators as BookActions } from '../../../../../../store/ducks/books';
+import { Creators as BookActions } from '../../../../store/ducks/books';
 
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-class BookGalleryMenu extends Component {
+class BookShelfMenu extends Component {
   state = {
     anchorEl: null,
     options: [
@@ -78,4 +78,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   null,
   mapDispatchToProps
-)(BookGalleryMenu);
+)(BookShelfMenu);

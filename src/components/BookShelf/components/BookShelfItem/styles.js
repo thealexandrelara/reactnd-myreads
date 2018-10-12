@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import BookGalleryMenu from '../BookGalleryMenu';
+import BookShelfMenu from '../BookShelfMenu';
 
 export const Container = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ export const AuthorName = styled.p`
   color: #b9b9c0;
 `;
 
-export const Menu = styled(BookGalleryMenu)`
+export const Menu = styled(BookShelfMenu)`
   display: flex;
   flex: 1;
   align-items: flex-end;

@@ -28,6 +28,10 @@ export default function books(state = INITIAL_STATE, action) {
       }
 
       return { ...state, loading: false };
+    case Types.SEARCH_BOOKS_REQUEST:
+      return { ...state };
+    case Types.SEARCH_BOOKS_SUCCESS:
+      return { ...state };
 
     default:
       return state;

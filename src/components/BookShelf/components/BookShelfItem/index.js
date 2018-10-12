@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Container, Title, AuthorName, BookThumbnail, Menu } from './styles';
 
-const BookGalleryItem = ({
+const BookShelfItem = ({
   id,
   title,
   authors,
@@ -19,6 +19,6 @@ const BookGalleryItem = ({
   );
 };
 
-// BookGalleryItem.propTypes = {};
+// BookShelfItem.propTypes = {};
 
-export default BookGalleryItem;
+export default BookShelfItem;

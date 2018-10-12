@@ -6,7 +6,7 @@ import { Creators as BooksActions } from '../../store/ducks/books';
 
 import { Container } from './styles';
 
-import BookGallery from './components/BookGallery';
+import BookShelf from '../../components/BookShelf';
 
 class Library extends Component {
   componentDidMount() {
@@ -20,12 +20,12 @@ class Library extends Component {
   renderLibrary() {
     return (
       <Container>
-        <BookGallery
+        <BookShelf
           title="Currently Reading"
           books={this.props.currentlyReadingBooks}
         />
-        <BookGallery title="Want to Read" books={this.props.wantToReadBooks} />
-        <BookGallery title="Read" books={this.props.readBooks} />
+        <BookShelf title="Want to Read" books={this.props.wantToReadBooks} />
+        <BookShelf title="Read" books={this.props.readBooks} />
       </Container>
     );
   }

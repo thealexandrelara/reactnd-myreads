@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin-top: 32px;
 `;
 
-export const BookGalleryContainer = styled.div`
+export const BookShelfContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@ export const BookGalleryContainer = styled.div`
   justify-content: flex-start;
 `;
 
-export const GalleryTitle = styled.h1`
+export const ShelfTitle = styled.h1`
   padding: 8px 16px;
   font-weight: 300;
   color: #535254;
