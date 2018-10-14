@@ -6,7 +6,7 @@ export const Container = styled.header`
   display: flex;
   height: 200px;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: baseline;
   margin: 24px 48px;
 
   .header-background {

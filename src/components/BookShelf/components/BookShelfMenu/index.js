@@ -1,26 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { Creators as BookActions } from '../../../../store/ducks/books';
 
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBook,
+  faBookReader,
+  faBookOpen,
+  faUnlink
+} from '@fortawesome/free-solid-svg-icons';
 
 class BookShelfMenu extends Component {
+  static propTypes = {
+    currentShelf: PropTypes.string,
+    updateBookShelfRequest: PropTypes.func.isRequired,
+    className: PropTypes.string,
+    bookId: PropTypes.string
+  };
+
   state = {
     anchorEl: null,
+    selectedKey: this.props.currentShelf,
     options: [
       {
         key: 'currentlyReading',
-        name: 'Currently Reading'
+        name: 'Currently Reading',
+        icon: faBookReader
       },
       {
         key: 'wantToRead',
-        name: 'Want to Read'
+        name: 'Want to Read',
+        icon: faBookOpen
       },
-      { key: 'read', name: 'Read' }
+      { key: 'read', name: 'Read', icon: faBook },
+      { key: 'none', name: 'None', icon: faUnlink }
     ]
   };
 
@@ -34,7 +56,25 @@ class BookShelfMenu extends Component {
 
   handleMenuItemClick = shelf => {
     this.props.updateBookShelfRequest(this.props.bookId, shelf);
+    this.setState(prevState => ({
+      selectedKey: shelf
+    }));
     this.handleClose();
+  };
+
+  renderMenuItem = option => {
+    return (
+      <MenuItem
+        key={option.key}
+        selected={option.key === this.state.selectedKey}
+        onClick={() => this.handleMenuItemClick(option.key)}
+      >
+        <ListItemIcon>
+          <FontAwesomeIcon icon={option.icon} />
+        </ListItemIcon>
+        <ListItemText inset primary={option.name} disableTypography />
+      </MenuItem>
+    );
   };
 
   render() {
@@ -58,14 +98,7 @@ class BookShelfMenu extends Component {
           onClose={this.handleClose}
         >
           <MenuItem disabled>Move to...</MenuItem>
-          {this.state.options.map(option => (
-            <MenuItem
-              key={option.key}
-              onClick={() => this.handleMenuItemClick(option.key)}
-            >
-              {option.name}
-            </MenuItem>
-          ))}
+          {this.state.options.map(option => this.renderMenuItem(option))}
         </Menu>
       </div>
     );

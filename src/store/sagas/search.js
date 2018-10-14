@@ -12,8 +12,18 @@ export function* searchBooks(action) {
       query: action.payload.query
     });
 
-    yield put(SearchActions.searchBooksSuccess(response.data.books));
+    console.log(response.data.books);
+    if (response.data.books.error) {
+      yield put(SearchActions.searchBooksError('No results found'));
+    } else {
+      yield put(SearchActions.searchBooksSuccess(response.data.books));
+    }
   } catch (err) {
-    console.log(err);
+    yield put(SearchActions.searchBooksError('No results found'));
   }
+}
+
+export function* resetSearch() {
+  console.log('RESET SEARCH');
+  yield put(SearchActions.searchBooksResetSuccess());
 }

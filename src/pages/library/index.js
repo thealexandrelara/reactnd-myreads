@@ -1,19 +1,122 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {
+  faBook,
+  faBookReader,
+  faBookOpen
+} from '@fortawesome/free-solid-svg-icons';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as BooksActions } from '../../store/ducks/books';
 
-import { Container } from './styles';
-
 import BookShelf from '../../components/BookShelf';
+import { Container } from './styles';
+import Loading from '../../components/Loading';
 
 class Library extends Component {
-  componentDidMount() {
-    this.loadBooks();
-  }
+  static propTypes = {
+    loading: PropTypes.bool.isRequired,
+    getBooksRequest: PropTypes.func.isRequired,
+    currentlyReadingBooks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        authors: PropTypes.arrayOf(PropTypes.string),
+        title: PropTypes.string,
+        subtitle: PropTypes.subtitle,
+        shelf: PropTypes.string,
+        readingModes: PropTypes.shape({
+          text: PropTypes.bool,
+          image: PropTypes.bool
+        }),
+        ratingsCount: PropTypes.number,
+        publisher: PropTypes.string,
+        publishedDate: PropTypes.string,
+        printType: PropTypes.string,
+        previewLink: PropTypes.string,
+        pageCount: PropTypes.number,
+        language: PropTypes.string,
+        maturityRating: PropTypes.string,
+        infoLink: PropTypes.string,
+        imageLinks: PropTypes.shape({
+          smallThumbnail: PropTypes.string,
+          thumbnail: PropTypes.string
+        }),
+        description: PropTypes.string,
+        contentVersion: PropTypes.string,
+        categories: PropTypes.arrayOf(PropTypes.string),
+        canonicalVolumeLink: PropTypes.string,
+        averageRating: PropTypes.number,
+        allowAnonLogging: PropTypes.bool
+      })
+    ).isRequired,
+    wantToReadBooks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        authors: PropTypes.arrayOf(PropTypes.string),
+        title: PropTypes.string,
+        subtitle: PropTypes.subtitle,
+        shelf: PropTypes.string,
+        readingModes: PropTypes.shape({
+          text: PropTypes.bool,
+          image: PropTypes.bool
+        }),
+        ratingsCount: PropTypes.number,
+        publisher: PropTypes.string,
+        publishedDate: PropTypes.string,
+        printType: PropTypes.string,
+        previewLink: PropTypes.string,
+        pageCount: PropTypes.number,
+        language: PropTypes.string,
+        maturityRating: PropTypes.string,
+        infoLink: PropTypes.string,
+        imageLinks: PropTypes.shape({
+          smallThumbnail: PropTypes.string,
+          thumbnail: PropTypes.string
+        }),
+        description: PropTypes.string,
+        contentVersion: PropTypes.string,
+        categories: PropTypes.arrayOf(PropTypes.string),
+        canonicalVolumeLink: PropTypes.string,
+        averageRating: PropTypes.number,
+        allowAnonLogging: PropTypes.bool
+      })
+    ).isRequired,
+    readBooks: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        authors: PropTypes.arrayOf(PropTypes.string),
+        title: PropTypes.string,
+        subtitle: PropTypes.subtitle,
+        shelf: PropTypes.string,
+        readingModes: PropTypes.shape({
+          text: PropTypes.bool,
+          image: PropTypes.bool
+        }),
+        ratingsCount: PropTypes.number,
+        publisher: PropTypes.string,
+        publishedDate: PropTypes.string,
+        printType: PropTypes.string,
+        previewLink: PropTypes.string,
+        pageCount: PropTypes.number,
+        language: PropTypes.string,
+        maturityRating: PropTypes.string,
+        infoLink: PropTypes.string,
+        imageLinks: PropTypes.shape({
+          smallThumbnail: PropTypes.string,
+          thumbnail: PropTypes.string
+        }),
+        description: PropTypes.string,
+        contentVersion: PropTypes.string,
+        categories: PropTypes.arrayOf(PropTypes.string),
+        canonicalVolumeLink: PropTypes.string,
+        averageRating: PropTypes.number,
+        allowAnonLogging: PropTypes.bool
+      })
+    ).isRequired
+  };
 
-  loadBooks() {
+  componentDidMount() {
     this.props.getBooksRequest();
   }
 
@@ -21,18 +124,22 @@ class Library extends Component {
     return (
       <Container>
         <BookShelf
+          faIcon={faBookReader}
           title="Currently Reading"
           books={this.props.currentlyReadingBooks}
         />
-        <BookShelf title="Want to Read" books={this.props.wantToReadBooks} />
-        <BookShelf title="Read" books={this.props.readBooks} />
+        <BookShelf
+          faIcon={faBookOpen}
+          title="Want to Read"
+          books={this.props.wantToReadBooks}
+        />
+        <BookShelf faIcon={faBook} title="Read" books={this.props.readBooks} />
       </Container>
     );
   }
 
   render() {
-    console.log(this.props);
-    return this.props.loading ? <div>Loading...</div> : this.renderLibrary();
+    return this.props.loading ? <Loading /> : this.renderLibrary();
   }
 }
 

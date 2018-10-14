@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
 class SearchInput extends Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired
+  };
+
   state = {
     query: ''
   };
@@ -11,7 +16,7 @@ class SearchInput extends Component {
     this.props.onChange(query);
 
     this.setState(prevState => ({
-      query: query.trim()
+      query
     }));
   };
 

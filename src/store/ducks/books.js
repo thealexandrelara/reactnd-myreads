@@ -24,7 +24,7 @@ export default function books(state = INITIAL_STATE, action) {
 
       if (index !== -1) {
         data[index].shelf = action.payload.shelf;
-        return { ...state, data };
+        return { ...state, data, loading: false };
       }
 
       return { ...state, loading: false };

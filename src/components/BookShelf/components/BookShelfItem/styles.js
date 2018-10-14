@@ -7,12 +7,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 270px;
-  width: 200px;
+  width: 250px;
   background: #fff;
   padding: 16px 24px;
   border-radius: 4px;
-  margin-left: 24px;
-  margin-top: 40px;
+  margin: 60px 24px 0 24px;
 
   -webkit-box-shadow: 1px 11px 35px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 11px 35px 5px rgba(0, 0, 0, 0.1);
