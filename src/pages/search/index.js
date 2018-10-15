@@ -49,6 +49,10 @@ class Search extends Component {
     error: PropTypes.string
   };
 
+  state = {
+    isEmptyQuery: true
+  };
+
   componentDidMount() {
     this.props.getBooksRequest();
   }
@@ -62,7 +66,10 @@ class Search extends Component {
     this.props.searchBooksRequest(query);
 
     if (query.trim() === '') {
+      this.setState(prevState => ({ isEmptyQuery: true }));
       this.props.searchBooksResetRequest();
+    } else {
+      this.setState(prevState => ({ isEmptyQuery: false }));
     }
   };
 
@@ -79,7 +86,8 @@ class Search extends Component {
             error={this.props.error}
           />
         ) : (
-          this.props.error && (
+          this.props.error &&
+          !this.state.isEmptyQuery && (
             <h3 className="no-results-found">No results found.</h3>
           )
         )}
