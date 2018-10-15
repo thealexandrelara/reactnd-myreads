@@ -5,6 +5,17 @@ Ao todo são 3 estantes virtuais disponíveis:
 * Want to Read: Quando o usuário manifesta desejo de ler aquele livro no futuro;
 * Read: Quando o usuário já terminou de ler aquele livro.
 
+### Imagens
+
+#### Tela Inicial
+<img src="https://user-images.githubusercontent.com/20469356/46933140-28b53180-d029-11e8-8730-f281a8f62af3.png" height="400" />
+
+#### Tela de Busca
+<img src="https://user-images.githubusercontent.com/20469356/46933159-39fe3e00-d029-11e8-85fa-d57b601ee55b.png" height="400" />
+
+#### Tela de Busca: Resultados da Pesquisa
+<img src="https://user-images.githubusercontent.com/20469356/46933165-3f5b8880-d029-11e8-8e60-21695be859c9.png" height="400" />
+
 ### Instalação e execução do projeto
 Para realizar a instalação, é necessário executar o comando `yarn install` ou `npm install`. Após o término da instalação, para executar o projeto pode-se executar o comando `yarn start` ou `npm start` na raíz do projeto.
 
