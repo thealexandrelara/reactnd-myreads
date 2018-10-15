@@ -11,7 +11,7 @@ Ao todo são 3 estantes virtuais disponíveis:
 <img src="https://user-images.githubusercontent.com/20469356/46933140-28b53180-d029-11e8-8730-f281a8f62af3.png" height="400" />
 
 #### Tela de Busca
-<img src="https://user-images.githubusercontent.com/20469356/46933159-39fe3e00-d029-11e8-85fa-d57b601ee55b.png" height="400" />
+<img src="https://user-images.githubusercontent.com/20469356/46933159-39fe3e00-d029-11e8-85fa-d57b601ee55b.png" width="400" />
 
 #### Tela de Busca: Resultados da Pesquisa
 <img src="https://user-images.githubusercontent.com/20469356/46933165-3f5b8880-d029-11e8-8e60-21695be859c9.png" height="400" />
