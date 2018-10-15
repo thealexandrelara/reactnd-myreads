@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.header`
   display: flex;
-  height: 200px;
+  height: 160px;
   justify-content: space-between;
   align-items: baseline;
-  margin: 24px 48px;
+  margin: 24px 48px 0;
 
   .header-background {
     content: '';
