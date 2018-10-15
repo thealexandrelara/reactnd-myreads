@@ -14,6 +14,23 @@ export const BookShelfContainer = styled.div`
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
+
+  div.empty-book-shelf {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+
+    img.empty-book-shelf-icon {
+      margin-top: 16px;
+    }
+
+    p.empty-book-shelf-text {
+      margin-top: 16px;
+      color: #bdbdbd;
+    }
+  }
 `;
 
 export const BookShelfTitleContainer = styled.div`

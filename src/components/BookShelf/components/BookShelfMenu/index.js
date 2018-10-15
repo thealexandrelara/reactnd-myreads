@@ -63,14 +63,23 @@ class BookShelfMenu extends Component {
   };
 
   renderMenuItem = option => {
+    const isSelected = option.key === this.state.selectedKey;
     return (
       <MenuItem
         key={option.key}
-        selected={option.key === this.state.selectedKey}
+        selected={isSelected}
+        style={{
+          backgroundColor: isSelected ? '#322684' : 'transparent',
+          color: isSelected ? 'white' : '',
+          fontWeight: isSelected ? 500 : 100
+        }}
         onClick={() => this.handleMenuItemClick(option.key)}
       >
         <ListItemIcon>
-          <FontAwesomeIcon icon={option.icon} />
+          <FontAwesomeIcon
+            icon={option.icon}
+            style={{ color: isSelected ? 'white' : '' }}
+          />
         </ListItemIcon>
         <ListItemText inset primary={option.name} disableTypography />
       </MenuItem>

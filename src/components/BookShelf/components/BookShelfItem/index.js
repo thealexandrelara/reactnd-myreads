@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, Title, AuthorName, BookThumbnail, Menu } from './styles';
+import { Container, BookThumbnail, Menu } from './styles';
 
 import pictureIcon from '../../../../assets/images/picture.svg';
 
@@ -15,8 +15,8 @@ const BookShelfItem = ({
   return (
     <Container>
       <BookThumbnail src={smallThumbnail ? smallThumbnail : pictureIcon} />
-      <Title>{title}</Title>
-      {authors && authors.length && <AuthorName>{authors[0]}</AuthorName>}
+      <h1 className="book-title">{title}</h1>
+      {authors && authors.length && <p className="book-author">{authors[0]}</p>}
       <Menu bookId={id} currentShelf={shelf || ''} />
     </Container>
   );

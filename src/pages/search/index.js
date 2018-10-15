@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import { Creators as SearchActions } from '../../store/ducks/search';
+import { Creators as BooksActions } from '../../store/ducks/books';
 
 import BookShelf from '../../components/BookShelf';
 import { Container, SearchBox, Loading } from './styles';
@@ -48,6 +49,10 @@ class Search extends Component {
     error: PropTypes.string
   };
 
+  componentDidMount() {
+    this.props.getBooksRequest();
+  }
+
   componentWillUnmount() {
     this.props.searchBooksResetRequest();
   }
@@ -67,13 +72,15 @@ class Search extends Component {
         <SearchBox onChange={this.handleInputChange} />
         {this.props.loading ? (
           <Loading />
+        ) : this.props.books.length > 0 ? (
+          <BookShelf
+            title="Search Results"
+            books={this.props.books}
+            error={this.props.error}
+          />
         ) : (
-          this.props.books.length > 0 && (
-            <BookShelf
-              title="Search Results"
-              books={this.props.books}
-              error={this.props.error}
-            />
+          this.props.error && (
+            <h3 className="no-results-found">No results found.</h3>
           )
         )}
       </Container>
@@ -91,11 +98,7 @@ const mapStateToProps = state => {
       bookInShelves => bookInShelves.id === book.id
     );
 
-    // Set `shelf` property in each book
-    if (matchedBook) {
-      console.log('MATCHEDBOOK');
-      console.log(matchedBook);
-    }
+    // Set `shelf` property in each book object
     book.shelf = matchedBook ? matchedBook.shelf : book.shelf || 'none';
   });
 
@@ -107,7 +110,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(SearchActions, dispatch);
+  bindActionCreators({ ...SearchActions, ...BooksActions }, dispatch);
 
 export default connect(
   mapStateToProps,

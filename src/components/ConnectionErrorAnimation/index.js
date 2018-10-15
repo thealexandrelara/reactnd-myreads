@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LottieControl from '../LottieControl';
 
-import animationData from '../../assets/animations/preloader.json';
+import animationData from '../../assets/animations/cloud_disconnection.json';
 
-const Loading = ({ className }) => {
+const ConnectionErrorAnimation = ({ className }) => {
   return (
     <LottieControl
       className={className}
@@ -15,8 +15,8 @@ const Loading = ({ className }) => {
   );
 };
 
-Loading.propTypes = {
+ConnectionErrorAnimation.propTypes = {
   className: PropTypes.string
 };
 
-export default Loading;
+export default ConnectionErrorAnimation;

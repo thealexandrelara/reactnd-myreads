@@ -1,8 +1,10 @@
 export const Types = {
   GET_BOOKS_REQUEST: 'books/GET_BOOKS_REQUEST',
   GET_BOOKS_SUCCESS: 'books/GET_BOOKS_SUCCESS',
+  GET_BOOKS_ERROR: 'books/GET_BOOKS_ERROR',
   UPDATE_BOOK_SHELF_REQUEST: 'books/UPDATE_BOOK_SHELF_REQUEST',
-  UPDATE_BOOK_SHELF_SUCCESS: 'books/UPDATE_BOOK_SHELF_SUCCESS'
+  UPDATE_BOOK_SHELF_SUCCESS: 'books/UPDATE_BOOK_SHELF_SUCCESS',
+  UPDATE_BOOK_SHELF_ERROR: 'books/UPDATE_BOOK_SHELF_ERROR'
 };
 
 const INITIAL_STATE = {
@@ -16,6 +18,8 @@ export default function books(state = INITIAL_STATE, action) {
       return { ...state, loading: true };
     case Types.GET_BOOKS_SUCCESS:
       return { data: action.payload.data, loading: false };
+    case Types.GET_BOOKS_ERROR:
+      return { ...state, loading: false, error: action.payload.error };
     case Types.UPDATE_BOOK_SHELF_REQUEST:
       return { ...state };
     case Types.UPDATE_BOOK_SHELF_SUCCESS:
@@ -28,10 +32,8 @@ export default function books(state = INITIAL_STATE, action) {
       }
 
       return { ...state, loading: false };
-    case Types.SEARCH_BOOKS_REQUEST:
-      return { ...state };
-    case Types.SEARCH_BOOKS_SUCCESS:
-      return { ...state };
+    case Types.UPDATE_BOOK_SHELF_ERROR:
+      return { ...state, error: action.payload.error };
 
     default:
       return state;
@@ -46,6 +48,10 @@ export const Creators = {
     type: Types.GET_BOOKS_SUCCESS,
     payload: { data }
   }),
+  getBooksError: error => ({
+    type: Types.GET_BOOKS_ERROR,
+    payload: { error }
+  }),
   updateBookShelfRequest: (id, shelf) => ({
     type: Types.UPDATE_BOOK_SHELF_REQUEST,
     payload: { id, shelf }
@@ -53,5 +59,9 @@ export const Creators = {
   updateBookShelfSuccess: (id, shelf) => ({
     type: Types.UPDATE_BOOK_SHELF_SUCCESS,
     payload: { id, shelf }
+  }),
+  updateBookShelfError: error => ({
+    type: Types.UPDATE_BOOK_SHELF_ERROR,
+    payload: { error }
   })
 };

@@ -10,7 +10,11 @@ export function* getBooks() {
 
     yield put(BooksActions.getBooksSuccess(response.data.books));
   } catch (err) {
-    console.log(err);
+    yield put(
+      BooksActions.getBooksError(
+        'An error has occurred. Please, refresh the page.'
+      )
+    );
   }
 }
 
@@ -21,6 +25,10 @@ export function* updateBookShelf(action) {
 
     yield put(BooksActions.updateBookShelfSuccess(id, shelf));
   } catch (err) {
-    console.log(err);
+    yield put(
+      BooksActions.updateBookShelfError(
+        'An error has occurred while updating book shelf. Please, try again.'
+      )
+    );
   }
 }

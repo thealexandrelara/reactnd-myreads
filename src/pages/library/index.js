@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
   faBook,
@@ -13,6 +13,7 @@ import { Creators as BooksActions } from '../../store/ducks/books';
 import BookShelf from '../../components/BookShelf';
 import { Container } from './styles';
 import Loading from '../../components/Loading';
+import ConnectionErrorAnimation from '../../components/ConnectionErrorAnimation';
 
 class Library extends Component {
   static propTypes = {
@@ -123,17 +124,30 @@ class Library extends Component {
   renderLibrary() {
     return (
       <Container>
-        <BookShelf
-          faIcon={faBookReader}
-          title="Currently Reading"
-          books={this.props.currentlyReadingBooks}
-        />
-        <BookShelf
-          faIcon={faBookOpen}
-          title="Want to Read"
-          books={this.props.wantToReadBooks}
-        />
-        <BookShelf faIcon={faBook} title="Read" books={this.props.readBooks} />
+        {this.props.error ? (
+          <div className="books-error-container ">
+            <ConnectionErrorAnimation />
+            <p className="books-error-text">Whoops! Something went wrong</p>
+          </div>
+        ) : (
+          <Fragment>
+            <BookShelf
+              faIcon={faBookReader}
+              title="Currently Reading"
+              books={this.props.currentlyReadingBooks}
+            />
+            <BookShelf
+              faIcon={faBookOpen}
+              title="Want to Read"
+              books={this.props.wantToReadBooks}
+            />
+            <BookShelf
+              faIcon={faBook}
+              title="Read"
+              books={this.props.readBooks}
+            />
+          </Fragment>
+        )}
       </Container>
     );
   }
@@ -144,6 +158,7 @@ class Library extends Component {
 }
 
 const mapStateToProps = state => ({
+  error: state.books.error,
   readBooks: state.books.data.filter(book => book.shelf === 'read'),
   currentlyReadingBooks: state.books.data.filter(
     book => book.shelf === 'currentlyReading'

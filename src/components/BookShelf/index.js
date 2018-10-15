@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ghostIcon from '../../assets/images/ghost.svg';
 
 import {
   Container,
@@ -23,16 +24,28 @@ const BookShelf = ({ faIcon, title, books, error }) => {
             <ShelfTitle>{title}</ShelfTitle>
           </BookShelfTitleContainer>
           <BookShelfContainer>
-            {books.map(book => (
-              <BookShelfItem
-                key={book.id}
-                id={book.id}
-                title={book.title}
-                authors={book.authors}
-                imageLinks={book.imageLinks}
-                shelf={book.shelf}
-              />
-            ))}
+            {books.length ? (
+              books.map(book => (
+                <BookShelfItem
+                  key={book.id}
+                  id={book.id}
+                  title={book.title}
+                  authors={book.authors}
+                  imageLinks={book.imageLinks}
+                  shelf={book.shelf}
+                />
+              ))
+            ) : (
+              <div className="empty-book-shelf">
+                <img
+                  className="empty-book-shelf-icon"
+                  src={ghostIcon}
+                  width={100}
+                  height={100}
+                />
+                <p className="empty-book-shelf-text">Buh! No books here.</p>
+              </div>
+            )}
           </BookShelfContainer>
         </Fragment>
       )}
