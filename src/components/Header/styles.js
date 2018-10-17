@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const Container = styled.header`
   display: flex;
   height: 160px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: baseline;
   margin: 24px 48px 0;
 
@@ -24,19 +24,28 @@ export const Container = styled.header`
     transform: skew(0deg, -5deg);
     border-bottom-left-radius: 120px;
   }
+
+  #menu {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+  }
 `;
 
 export const SiteTitle = styled(Link)`
   cursor: pointer;
   color: #fff;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 1.5em;
+  font-weight: bolder;
   text-decoration: none;
 `;
 
 export const SearchItem = styled(Link)`
   cursor: pointer;
   color: #fff;
-  font-size: 14px;
+  font-size: 1em;
+  font-weight: bold;
   text-decoration: none;
 `;

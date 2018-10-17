@@ -7,6 +7,8 @@ export const Container = styled.footer`
   justify-items: center;
 
   .error-box-text {
+    text-align: center;
+    padding: 0 16px;
     color: #535254;
   }
 `;

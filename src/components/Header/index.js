@@ -6,8 +6,10 @@ const Header = () => {
   return (
     <Container>
       <div className="header-background" />
-      <SiteTitle to="/">MyReads</SiteTitle>
-      <SearchItem to="/search">Search</SearchItem>
+      <div id="menu">
+        <SiteTitle to="/">MyReads</SiteTitle>
+        <SearchItem to="/search">Search</SearchItem>
+      </div>
     </Container>
   );
 };

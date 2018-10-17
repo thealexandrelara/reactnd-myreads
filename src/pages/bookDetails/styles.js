@@ -5,6 +5,8 @@ import BookShelfMenu from '../../components/BookShelf/components/BookShelfMenu';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-self: center;
+  max-width: 960px;
   background: #fff;
   padding: 16px 16px;
   border-radius: 4px;
