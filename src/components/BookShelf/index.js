@@ -40,6 +40,7 @@ const BookShelf = ({ faIcon, title, books, error }) => {
                 <img
                   className="empty-book-shelf-icon"
                   src={ghostIcon}
+                  alt="No books"
                   width={100}
                   height={100}
                 />

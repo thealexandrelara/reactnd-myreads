@@ -8,6 +8,7 @@ import { Creators as SearchActions } from '../ducks/search';
 export function* searchBooks(action) {
   try {
     yield call(delay, 500);
+    if (!action.payload.query.trim()) return;
     const response = yield call(api.post, `/search`, {
       query: action.payload.query
     });
@@ -24,6 +25,5 @@ export function* searchBooks(action) {
 }
 
 export function* resetSearch() {
-  console.log('RESET SEARCH');
   yield put(SearchActions.searchBooksResetSuccess());
 }

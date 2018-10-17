@@ -13,108 +13,30 @@ import { Creators as BooksActions } from '../../store/ducks/books';
 import BookShelf from '../../components/BookShelf';
 import { Container } from './styles';
 import Loading from '../../components/Loading';
-import ConnectionErrorAnimation from '../../components/ConnectionErrorAnimation';
+import ErrorBox from '../../components/ErrorBox';
+
+const defaultBooksPropTypes = PropTypes.arrayOf(
+  PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    authors: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string,
+    shelf: PropTypes.string,
+    maturityRating: PropTypes.string,
+    infoLink: PropTypes.string,
+    imageLinks: PropTypes.shape({
+      smallThumbnail: PropTypes.string,
+      thumbnail: PropTypes.string
+    })
+  })
+).isRequired;
 
 class Library extends Component {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
     getBooksRequest: PropTypes.func.isRequired,
-    currentlyReadingBooks: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        authors: PropTypes.arrayOf(PropTypes.string),
-        title: PropTypes.string,
-        subtitle: PropTypes.subtitle,
-        shelf: PropTypes.string,
-        readingModes: PropTypes.shape({
-          text: PropTypes.bool,
-          image: PropTypes.bool
-        }),
-        ratingsCount: PropTypes.number,
-        publisher: PropTypes.string,
-        publishedDate: PropTypes.string,
-        printType: PropTypes.string,
-        previewLink: PropTypes.string,
-        pageCount: PropTypes.number,
-        language: PropTypes.string,
-        maturityRating: PropTypes.string,
-        infoLink: PropTypes.string,
-        imageLinks: PropTypes.shape({
-          smallThumbnail: PropTypes.string,
-          thumbnail: PropTypes.string
-        }),
-        description: PropTypes.string,
-        contentVersion: PropTypes.string,
-        categories: PropTypes.arrayOf(PropTypes.string),
-        canonicalVolumeLink: PropTypes.string,
-        averageRating: PropTypes.number,
-        allowAnonLogging: PropTypes.bool
-      })
-    ).isRequired,
-    wantToReadBooks: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        authors: PropTypes.arrayOf(PropTypes.string),
-        title: PropTypes.string,
-        subtitle: PropTypes.subtitle,
-        shelf: PropTypes.string,
-        readingModes: PropTypes.shape({
-          text: PropTypes.bool,
-          image: PropTypes.bool
-        }),
-        ratingsCount: PropTypes.number,
-        publisher: PropTypes.string,
-        publishedDate: PropTypes.string,
-        printType: PropTypes.string,
-        previewLink: PropTypes.string,
-        pageCount: PropTypes.number,
-        language: PropTypes.string,
-        maturityRating: PropTypes.string,
-        infoLink: PropTypes.string,
-        imageLinks: PropTypes.shape({
-          smallThumbnail: PropTypes.string,
-          thumbnail: PropTypes.string
-        }),
-        description: PropTypes.string,
-        contentVersion: PropTypes.string,
-        categories: PropTypes.arrayOf(PropTypes.string),
-        canonicalVolumeLink: PropTypes.string,
-        averageRating: PropTypes.number,
-        allowAnonLogging: PropTypes.bool
-      })
-    ).isRequired,
-    readBooks: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        authors: PropTypes.arrayOf(PropTypes.string),
-        title: PropTypes.string,
-        subtitle: PropTypes.subtitle,
-        shelf: PropTypes.string,
-        readingModes: PropTypes.shape({
-          text: PropTypes.bool,
-          image: PropTypes.bool
-        }),
-        ratingsCount: PropTypes.number,
-        publisher: PropTypes.string,
-        publishedDate: PropTypes.string,
-        printType: PropTypes.string,
-        previewLink: PropTypes.string,
-        pageCount: PropTypes.number,
-        language: PropTypes.string,
-        maturityRating: PropTypes.string,
-        infoLink: PropTypes.string,
-        imageLinks: PropTypes.shape({
-          smallThumbnail: PropTypes.string,
-          thumbnail: PropTypes.string
-        }),
-        description: PropTypes.string,
-        contentVersion: PropTypes.string,
-        categories: PropTypes.arrayOf(PropTypes.string),
-        canonicalVolumeLink: PropTypes.string,
-        averageRating: PropTypes.number,
-        allowAnonLogging: PropTypes.bool
-      })
-    ).isRequired
+    currentlyReadingBooks: defaultBooksPropTypes,
+    wantToReadBooks: defaultBooksPropTypes,
+    readBooks: defaultBooksPropTypes
   };
 
   componentDidMount() {
@@ -125,10 +47,7 @@ class Library extends Component {
     return (
       <Container>
         {this.props.error ? (
-          <div className="books-error-container ">
-            <ConnectionErrorAnimation />
-            <p className="books-error-text">Whoops! Something went wrong</p>
-          </div>
+          <ErrorBox errorMessage="Whoops! Something went wrong" />
         ) : (
           <Fragment>
             <BookShelf

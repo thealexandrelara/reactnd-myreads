@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { Container, BookThumbnail, Menu } from './styles';
@@ -14,8 +15,13 @@ const BookShelfItem = ({
 }) => {
   return (
     <Container>
-      <BookThumbnail src={smallThumbnail ? smallThumbnail : pictureIcon} />
-      <h1 className="book-title">{title}</h1>
+      <Link to={`/book/${id}`}>
+        <BookThumbnail src={smallThumbnail ? smallThumbnail : pictureIcon} />
+      </Link>
+      <Link to={`/book/${id}`}>
+        {' '}
+        <h1 className="book-title">{title}</h1>
+      </Link>
       {authors && authors.length && <p className="book-author">{authors[0]}</p>}
       <Menu bookId={id} currentShelf={shelf || ''} />
     </Container>

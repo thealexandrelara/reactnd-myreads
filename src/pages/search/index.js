@@ -62,7 +62,6 @@ class Search extends Component {
   }
 
   handleInputChange = query => {
-    console.log('query: ', query);
     this.props.searchBooksRequest(query);
 
     if (query.trim() === '') {

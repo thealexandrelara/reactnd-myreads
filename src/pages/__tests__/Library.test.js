@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Library from '../library';
 import createMockStore from 'redux-mock-store';
-import { Creators as BooksActions } from '../../store/ducks/books';
 
 const mockStore = createMockStore();
 const store = mockStore({
@@ -35,9 +36,16 @@ const store = mockStore({
 
 describe('Search Component', () => {
   it('should render as expected', () => {
-    const wrapper = mount(<Library />, {
-      context: { store }
-    });
+    const wrapper = mount(
+      <MemoryRouter initialEntries={['/']}>
+        <Provider store={store}>
+          <Library />
+        </Provider>
+      </MemoryRouter>,
+      {
+        context: { store }
+      }
+    );
 
     console.log(wrapper.html());
 
@@ -52,9 +60,13 @@ describe('Search Component', () => {
       }
     });
 
-    const wrapper = mount(<Library />, {
-      context: { store: loadingStore }
-    });
+    const wrapper = mount(
+      <MemoryRouter initialEntries={['/']}>
+        <Provider store={loadingStore}>
+          <Library />
+        </Provider>
+      </MemoryRouter>
+    );
 
     console.log(wrapper.html());
 

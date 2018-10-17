@@ -16,6 +16,11 @@ export const Container = styled.div`
   -webkit-box-shadow: 1px 11px 35px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 11px 35px 5px rgba(0, 0, 0, 0.1);
 
+  a {
+    align-self: center;
+    text-decoration: none;
+  }
+
   h1 {
     &.book-title {
       margin: 8px 0;
