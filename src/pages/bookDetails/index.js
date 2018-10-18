@@ -18,29 +18,27 @@ import ErrorBox from '../../components/ErrorBox';
 
 import pictureIcon from '../../assets/images/picture.svg';
 
-const defaultBooksPropTypes = PropTypes.shape({
-  id: PropTypes.string,
-  authors: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string,
-  subtitle: PropTypes.subtitle,
-  shelf: PropTypes.string,
-  publisher: PropTypes.string,
-  publishedDate: PropTypes.string,
-  pageCount: PropTypes.number,
-  language: PropTypes.string,
-  maturityRating: PropTypes.string,
-  imageLinks: PropTypes.shape({
-    smallThumbnail: PropTypes.string,
-    thumbnail: PropTypes.string
-  }),
-  description: PropTypes.string,
-  categories: PropTypes.arrayOf(PropTypes.string),
-  averageRating: PropTypes.number
-}).isRequired;
-
 class BookDetails extends Component {
   static propTypes = {
-    book: defaultBooksPropTypes
+    book: PropTypes.shape({
+      id: PropTypes.string,
+      authors: PropTypes.arrayOf(PropTypes.string),
+      title: PropTypes.string,
+      subtitle: PropTypes.subtitle,
+      shelf: PropTypes.string,
+      publisher: PropTypes.string,
+      publishedDate: PropTypes.string,
+      pageCount: PropTypes.number,
+      language: PropTypes.string,
+      maturityRating: PropTypes.string,
+      imageLinks: PropTypes.shape({
+        smallThumbnail: PropTypes.string,
+        thumbnail: PropTypes.string
+      }),
+      description: PropTypes.string,
+      categories: PropTypes.arrayOf(PropTypes.string),
+      averageRating: PropTypes.number
+    }).isRequired
   };
 
   componentDidMount() {
@@ -79,8 +77,8 @@ class BookDetails extends Component {
             <img
               className="book-thumbnail"
               src={
-                imageLinks && imageLinks.smallThumbnail
-                  ? imageLinks.smallThumbnail
+                imageLinks && imageLinks.thumbnail
+                  ? imageLinks.thumbnail
                   : pictureIcon
               }
               alt={title}

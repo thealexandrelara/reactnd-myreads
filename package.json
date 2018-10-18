@@ -1,6 +1,7 @@
 {
   "name": "reactnd-myreads",
   "version": "0.1.0",
+  "homepage": "https://my-reads-alexandre-lara.surge.sh/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.6",

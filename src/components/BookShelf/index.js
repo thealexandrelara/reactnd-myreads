@@ -62,31 +62,11 @@ BookShelfItem.propTypes = {
       id: PropTypes.string.isRequired,
       authors: PropTypes.arrayOf(PropTypes.string),
       title: PropTypes.string,
-      subtitle: PropTypes.subtitle,
       shelf: PropTypes.string,
-      readingModes: PropTypes.shape({
-        text: PropTypes.bool,
-        image: PropTypes.bool
-      }),
-      ratingsCount: PropTypes.number,
-      publisher: PropTypes.string,
-      publishedDate: PropTypes.string,
-      printType: PropTypes.string,
-      previewLink: PropTypes.string,
-      pageCount: PropTypes.number,
-      language: PropTypes.string,
-      maturityRating: PropTypes.string,
-      infoLink: PropTypes.string,
       imageLinks: PropTypes.shape({
         smallThumbnail: PropTypes.string,
         thumbnail: PropTypes.string
-      }),
-      description: PropTypes.string,
-      contentVersion: PropTypes.string,
-      categories: PropTypes.arrayOf(PropTypes.string),
-      canonicalVolumeLink: PropTypes.string,
-      averageRating: PropTypes.number,
-      allowAnonLogging: PropTypes.bool
+      })
     })
   ),
   error: PropTypes.string

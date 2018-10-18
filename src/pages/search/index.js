@@ -17,33 +17,7 @@ class Search extends Component {
     books: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
-        authors: PropTypes.arrayOf(PropTypes.string),
-        title: PropTypes.string,
-        subtitle: PropTypes.subtitle,
-        shelf: PropTypes.string,
-        readingModes: PropTypes.shape({
-          text: PropTypes.bool,
-          image: PropTypes.bool
-        }),
-        ratingsCount: PropTypes.number,
-        publisher: PropTypes.string,
-        publishedDate: PropTypes.string,
-        printType: PropTypes.string,
-        previewLink: PropTypes.string,
-        pageCount: PropTypes.number,
-        language: PropTypes.string,
-        maturityRating: PropTypes.string,
-        infoLink: PropTypes.string,
-        imageLinks: PropTypes.shape({
-          smallThumbnail: PropTypes.string,
-          thumbnail: PropTypes.string
-        }),
-        description: PropTypes.string,
-        contentVersion: PropTypes.string,
-        categories: PropTypes.arrayOf(PropTypes.string),
-        canonicalVolumeLink: PropTypes.string,
-        averageRating: PropTypes.number,
-        allowAnonLogging: PropTypes.bool
+        shelf: PropTypes.string
       })
     ).isRequired,
     error: PropTypes.string
@@ -100,12 +74,16 @@ const mapStateToProps = state => {
   const booksInShelves = state.books.data;
   const books = state.search.books;
 
+  // For each book returned from the search, check if it is already included in a shelf
+  // then set book shelf for each book in order to keep the correct selection in each
+  // book item menu
   books.forEach(book => {
     const matchedBook = booksInShelves.find(
       bookInShelves => bookInShelves.id === book.id
     );
 
-    // Set `shelf` property in each book object
+    // Set `shelf` property in each book object in order to keep
+    // track of the correct selection in each book item in menu
     book.shelf = matchedBook ? matchedBook.shelf : book.shelf || 'none';
   });
 

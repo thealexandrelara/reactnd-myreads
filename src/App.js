@@ -11,22 +11,18 @@ import './styles/global';
 
 import { Container, Content } from './styles/components';
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <BrowserRouter>
-          <Container>
-            <Header />
-            <Content>
-              <Routes />
-            </Content>
-            <Footer />
-          </Container>
-        </BrowserRouter>
-      </Provider>
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Container>
+        <Header />
+        <Content>
+          <Routes />
+        </Content>
+        <Footer />
+      </Container>
+    </BrowserRouter>
+  </Provider>
+);
 
 export default App;
